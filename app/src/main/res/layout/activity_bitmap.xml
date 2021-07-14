@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".action001drawbitmap.BitmapActivity">
+
+    <TextView
+        android:text="ImageView 绘制图片"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/iv"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:text=" SurfaceView 绘制图片"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <SurfaceView
+        android:id="@+id/surface"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <TextView
+        android:text="自定义 View 绘制图片"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <com.laputa.av.action001drawbitmap.CustomView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+</LinearLayout>
