@@ -185,7 +185,14 @@ class VideoEncoderThread(
                             mBufferInfo.size = 0
                         }
                         if (mBufferInfo.size != 0) {
-                            // todo format changed
+                            muxerThread.get()?.let {
+                                mm->
+                                if (!mm.isVideoTrackAdd){
+                                    logger("准备添加视频轨 ￥",TAG)
+                                    mm.addTrackIndex(MediaMuxerThread.TRACK_VIDEO,mMediaCodec!!.outputFormat)
+                                }
+                            }
+
                             tOutputBuffer.position(mBufferInfo.offset) // 拿到热饭
                             tOutputBuffer.limit(mBufferInfo.offset + mBufferInfo.size)
                             logger("    -->解码视频数据 success",TAG)
@@ -221,6 +228,10 @@ class VideoEncoderThread(
 
     fun exit() {
         isExit = true
+    }
+
+    fun reStart() {
+
     }
 
     companion object {

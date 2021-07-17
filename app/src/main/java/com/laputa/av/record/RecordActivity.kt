@@ -16,6 +16,7 @@ class RecordActivity : AppCompatActivity() {
 
     private var mSurfaceHolder: SurfaceHolder? = null
     private var mCamera: Camera? = null
+    private var mMediaMuxerThread: MediaMuxerThread? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +36,14 @@ class RecordActivity : AppCompatActivity() {
 
         findViewById<View>(R.id.btn_start).setOnClickListener {
             startCamera()
-            MediaMuxerThread.startMuxer()
+            mMediaMuxerThread = MediaMuxerThread().also {
+                it.startMuxer()
+            }
         }
 
         findViewById<View>(R.id.btn_stop).setOnClickListener {
             stopCamera()
-            MediaMuxerThread.stopMuxer()
+            mMediaMuxerThread?.stopMuxer()
         }
 
         findViewById<View>(R.id.btn_play).setOnClickListener {
@@ -103,7 +106,7 @@ class RecordActivity : AppCompatActivity() {
                 setPreviewCallback { data, camera ->
                     //logger("onPreviewFrame ${data.size}", "startCamera")
                     if (data!=null){
-                        MediaMuxerThread.addVideoFrameData(data)
+                        mMediaMuxerThread?.addVideoFrameData(data)
                     }
                 }
             }.also {
